@@ -1,4 +1,4 @@
-package mhs.springtacocloud;
+package mhs.springtacocloud.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
