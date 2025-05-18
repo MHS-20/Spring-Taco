@@ -12,23 +12,9 @@ import lombok.Data;
 
 import mhs.springtacocloud.repository.IngredientUDT;
 import mhs.springtacocloud.repository.TacoUDRUtils;
-import org.springframework.data.cassandra.core.cql.Ordering;
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
-
-import com.datastax.oss.driver.api.core.uuid.Uuids;
-
 
 @Data
-@Table
 public class Taco {
-
-    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED)
-    private UUID id = Uuids.timeBased();
-
-    @PrimaryKeyColumn(type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
     private Date createdAt = new Date();
 
     @NotNull
@@ -37,7 +23,6 @@ public class Taco {
 
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    @Column("ingredients")
     private List<IngredientUDT> ingredients = new ArrayList<>();
 
     public void addIngredient(Ingredient ingredient) {

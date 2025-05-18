@@ -11,27 +11,20 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.NotBlank;
 import mhs.springtacocloud.repository.TacoUDT;
 import org.hibernate.validator.constraints.CreditCardNumber;
-
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
-import com.datastax.oss.driver.api.core.uuid.Uuids;
-
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 import lombok.Data;
 
 @Data
-@Table
+@Document
 public class TacoOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @PrimaryKey
-    private UUID id = Uuids.timeBased();
-
+    @Id
+    private String id;
     private Date placedAt;
 
-    @Column("tacos")
     private List<TacoUDT> tacos = new ArrayList<>();
 
     public void addTaco(TacoUDT taco) {
