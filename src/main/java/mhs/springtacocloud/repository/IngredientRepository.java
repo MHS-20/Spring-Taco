@@ -1,13 +1,10 @@
 package mhs.springtacocloud.repository;
 
-import java.util.Optional;
-
 import mhs.springtacocloud.model.Ingredient;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface IngredientRepository {
-    Iterable<Ingredient> findAll();
+@Repository
+public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 
-    Optional<Ingredient> findById(String id);
-
-    Ingredient save(Ingredient ingredient);
 }
